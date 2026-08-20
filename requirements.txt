@@ -1,0 +1,15 @@
+# Core experiment stack. Pin loosely so Colab can still resolve CUDA builds.
+transformers>=4.49
+accelerate
+peft
+bitsandbytes
+qwen-vl-utils>=0.0.8
+datasets
+sentencepiece
+protobuf
+pillow>=10.4.0
+pandas
+numpy
+scikit-learn
+matplotlib
+torch

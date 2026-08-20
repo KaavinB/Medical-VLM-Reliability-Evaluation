@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+title: "When Medical VLMs Sound Right but Are Wrong: Measuring the Fluency-Correctness Gap in Chest X-Ray Pneumonia Classification"
+message: If you use this software, please cite it as below.
+type: software
+authors:
+  - family-names: Balasubramanian
+    given-names: Kaavin
+    email: kb180@rice.edu
+    affiliation: Rice University
+  - family-names: Haider
+    given-names: Syed Fazail
+    email: sh253@rice.edu
+    affiliation: Rice University
+repository-code: https://github.com/KaavinB/Medical-VLM-Reliability-Evaluation
+url: https://github.com/KaavinB/Medical-VLM-Reliability-Evaluation
+abstract: >-
+  Evaluation framework for Qwen-family vision-language models on chest X-ray
+  pneumonia classification. Reports accuracy alongside overconfident error rate,
+  fluency and faithfulness proxies, and the fluency-correctness gap.
+keywords:
+  - medical imaging
+  - vision-language models
+  - chest X-ray
+  - pneumonia
+  - hallucination
+  - reliability
+  - LoRA
+license: MIT
+year: 2026

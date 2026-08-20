@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Experiment artifacts
+outputs/
+all_figures_svg.zip
+*.safetensors
+lora_adapter/
+
+# Dataset (do not commit patient images)
+chest_xray/
+data/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

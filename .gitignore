@@ -1,21 +1,26 @@
 # Python
 __pycache__/
 *.py[cod]
+*$py.class
 *.egg-info/
 .venv/
 venv/
 .env
+.env.*
 
 # Jupyter
 .ipynb_checkpoints/
 
-# Experiment artifacts
+# Experiment artifacts and model weights
 outputs/
 all_figures_svg.zip
 *.safetensors
 lora_adapter/
+wandb/
+hf_cache/
+*.zip
 
-# Dataset (do not commit patient images)
+# Dataset (do not commit chest X-ray images)
 chest_xray/
 data/
 
@@ -23,3 +28,4 @@ data/
 .DS_Store
 .idea/
 .vscode/
+*.swp

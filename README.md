@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/Models-Qwen2.5--VL%20%7C%20Qwen3--VL-6f42c1" alt="Models">
   <img src="https://img.shields.io/badge/Task-Chest%20X--ray%20pneumonia-0e7c7b" alt="Task">
   <img src="https://img.shields.io/badge/Course-COMP%20646%20%7C%20Rice%20University-00205b" alt="Course">
-  <img src="https://img.shields.io/github/license/KaavinB/Medical-VLM-Reliability-Evaluation" alt="License">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License"></a>
 </p>
 
 Fluent medical text is not the same as a correct diagnosis. This project evaluates Qwen-family vision-language models on chest X-ray pneumonia classification and measures a failure mode that accuracy alone misses: **wrong answers that still sound confident, structured, and clinically fluent**.
@@ -17,7 +17,7 @@ Fluent medical text is not the same as a correct diagnosis. This project evaluat
 
 **Authors:** [Kaavin Balasubramanian](mailto:kb180@rice.edu) and [Syed Fazail Haider](mailto:sh253@rice.edu) · Department of Computer Science, Rice University
 
-**Report:** [docs/report.pdf](docs/report.pdf)
+**Report:** [docs/report.pdf](docs/report.pdf) · **Notebook:** [medical_vlm_fluency_gap.ipynb](medical_vlm_fluency_gap.ipynb)
 
 ---
 
@@ -26,6 +26,11 @@ Fluent medical text is not the same as a correct diagnosis. This project evaluat
 A medical VLM can return valid JSON, use radiology vocabulary, and report high confidence while still choosing the wrong label. In a clinical setting, that kind of persuasive wrongness is more dangerous than an obviously broken answer.
 
 This repository implements an evaluation pipeline that scores **correctness, confidence, fluency, and faithfulness together**, then reports the **fluency–correctness gap**: how fluent wrong answers are relative to overall accuracy.
+
+<p align="center">
+  <img src="docs/assets/framework.png" alt="Standard VLM evaluation versus the fluency-correctness gap framework" width="900">
+</p>
+<p align="center"><em>Figure 1. Standard medical VLM evaluation (top) vs. this project's safety-oriented scoring pipeline (bottom).</em></p>
 
 ## Key results
 
@@ -41,6 +46,11 @@ Evaluated on a balanced 200-image test subset (100 normal / 100 pneumonia) from 
 | Fluency–correctness gap | −0.072 | −0.189 | 0.138 | **0.200** |
 
 The strongest classifier, Qwen3-VL with LoRA, still misses more than half of pneumonia cases and makes most of its mistakes with **high stated confidence**. Its wrong answers are also the most fluent. That is the thesis of the project: newer VLMs can get better at sounding coherent before they become reliable at medical reasoning.
+
+<p align="center">
+  <img src="docs/assets/qualitative_examples.png" alt="Side-by-side predictions from four model settings on the same chest X-rays" width="900">
+</p>
+<p align="center"><em>Figure 2. The same chest X-rays scored by four model settings. Green is a correct label; red is an error that can still look fluent.</em></p>
 
 ## Evaluation pipeline
 
@@ -88,10 +98,13 @@ LoRA uses 4-bit NF4 quantization so a 7–8B VLM can be adapted on a single Cola
 
 ```text
 .
-├── medical_vlm_fluency_gap.ipynb   # End-to-end Colab notebook
-├── docs/report.pdf                 # Course report
+├── medical_vlm_fluency_gap.ipynb   # End-to-end Colab / local notebook
+├── docs/
+│   ├── report.pdf                  # Course report
+│   └── assets/                     # README figures
 ├── requirements.txt
-└── CITATION.cff
+├── CITATION.cff
+└── LICENSE
 ```
 
 The notebook is organized as a single top-to-bottom experiment:
@@ -102,6 +115,8 @@ The notebook is organized as a single top-to-bottom experiment:
 4. Optional LoRA fine-tuning and re-evaluation
 5. Side-by-side comparison across the four model settings
 6. Figure / CSV export for the report
+
+Official numbers in this README match Table 1 of the report. If you re-run the notebook, results can shift with model version, GPU, and sampling.
 
 ## Quick start
 
